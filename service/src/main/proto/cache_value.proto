@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package com.express.cache_value;
+
+option java_multiple_files = true;
+option java_package = "com.express.cache_value";
+option java_outer_classname = "CacheValue";
+
+message DispatchStatus {
+    // 订单ID
+    string id = 1;
+    // 服务类型[即时用车,预约用车]
+    int32 service_type = 2;
+    // 预约上车时间
+    uint64 pickup_time = 3;
+    uint64 taken_time = 4;
+    uint64 pay_time = 5;
+}
+
+message Order {
+  string id = 1;
+
+  string customer_id = 2;
+
+  int32 service_type = 3;
+
+  string start_location = 4;
+  double start_latitude = 5;
+  double start_longitude = 6;
+  string end_location = 7;
+  double end_latitude = 8;
+  double end_longitude = 9;
+  uint64 pickup_time = 10;
+  string passenger = 11;
+  string phone = 12;
+  string message = 13;
+  string driver_id = 14;
+  string city_id = 15;
+
+  int32 status = 16;
+  int32 pay_status = 17;
+
+  // 如下字段用得到么?
+  double estimate_distance = 18;
+  uint32 estimate_time = 19;
+  int32 estimate_amount = 20;
+
+  // 金额相关
+  // TODO: 这样不合适 应该是
+  // repeated message Fare {
+  //   int32 fare_type;
+  //   string fare_name;
+  //   int32 amount;
+  // }
+  //
+  int32 starting_fare = 21;
+  int32 distance_fare = 22;
+  int32 highway_fare = 23;
+  string coupon_id = 24;
+
+  // 舒适/豪华/国宾
+  int32 car_type = 25;
+  // what's the difference between car_type & car_grade_type
+  int32 car_grade_type = 26;
+
+  // 航班相关
+  string flight_no = 27;
+  string departure_time = 28;
+  string departure_airport = 29;
+  string landing_airport = 30;
+
+  int32 pay_amount = 31;
+  int32 net_pay_amount = 32;
+  int32 business_channel = 33;
+  int32 invoice_status = 34;
+  bool shared = 35;
+  bool commented = 36;
+  uint64 arrive_time = 37;
+  uint64 service_start_time = 38;
+  uint64 service_end_time = 39;
+  int32 cause = 40;
+  int32 version = 41;
+  
+  uint64 create_order_time = 42;
+  uint64 take_order_time = 43;
+}
+
+message Driver {
+    string id = 1;
+    int32 car_type = 2;
+    int32 car_grand_type = 3;
+    int32 driver_status = 4;
+    int32 driver_service_status = 5;
+    bool isDegrade = 6;
+}
+
+message Vehicle {
+    string id = 1;
+}
